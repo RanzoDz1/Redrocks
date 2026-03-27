@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Red Rocks Carpet Cleaning & Upholstery Care | Denver, CO</title>
+    <meta name="description"
+        content="Denver's premier carpet, upholstery, rug, tile, and wood floor cleaning service. IICRC certified, eco-friendly, 5-star rated. Call +1 (303) 944-6070 for a free quote." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ===== HEADER / NAV ===== -->
+    <header class="site-header" id="top">
+        <nav class="nav-inner">
+            <a href="#top" class="nav-logo">
+                <img src="https://customer-assets.emergentagent.com/job_b1aaf2b5-fbc2-4620-aa79-e371dea47623/artifacts/5udviie8_redrockscarpetcleaning-logo02.png"
+                    alt="Red Rocks Carpet Cleaning Logo"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                <span class="logo-text-fallback" style="display:none">Red Rocks<br><small>Carpet Cleaning</small></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why-us">Why Us</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="tel:+13039446070" class="btn-call" data-testid="nav-call-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.85 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.9-.9a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
+                    (303) 944-6070
+                </a>
+                <button class="btn-primary" onclick="openQuoteModal()" data-testid="nav-quote-btn">Get Free
+                    Quote</button>
+            </div>
+            <button class="nav-hamburger" onclick="toggleMobileNav()" aria-label="Toggle navigation"
+                data-testid="hamburger-btn">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="#services" onclick="toggleMobileNav()">Services</a>
+            <a href="#why-us" onclick="toggleMobileNav()">Why Us</a>
+            <a href="#reviews" onclick="toggleMobileNav()">Reviews</a>
+            <a href="#faq" onclick="toggleMobileNav()">FAQ</a>
+            <a href="#contact" onclick="toggleMobileNav()">Contact</a>
+            <a href="tel:+13039446070" class="mobile-call">📞 (303) 944-6070</a>
+            <button class="btn-primary w-full" onclick="openQuoteModal(); toggleMobileNav()">Get Free Quote</button>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content container">
+            <div class="hero-badge">
+                <span class="star-icon">★★★★★</span> 5-Star Rated in Denver
+            </div>
+            <h1>Denver's Premier<br><span class="hero-accent">Carpet &amp; Upholstery</span><br>Care</h1>
+            <p class="hero-sub">Revitalize your home with Red Rocks deep cleaning technology.<br>IICRC Certified ·
+                Eco-Friendly · Satisfaction Guaranteed</p>
+            <div class="hero-actions">
+                <button class="btn-primary btn-lg" onclick="openQuoteModal()" data-testid="hero-quote-btn">Get Free
+                    Quote</button>
+                <a href="#services" class="btn-outline">Explore Services</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat"><span class="stat-num">500+</span><span class="stat-label">Happy Clients</span>
+                </div>
+                <div class="hero-stat-div"></div>
+                <div class="hero-stat"><span class="stat-num">15+</span><span class="stat-label">Years Experience</span>
+                </div>
+                <div class="hero-stat-div"></div>
+                <div class="hero-stat"><span class="stat-num">100%</span><span class="stat-label">Satisfaction
+                        Rate</span></div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-dot"></div>
+        </div>
+    </section>
+
+    <!-- ===== TRUST BAR ===== -->
+    <section class="trust-bar">
+        <div class="container trust-inner">
+            <div class="trust-item">
+                <div class="trust-icon">🏆</div>
+                <div><strong>IICRC Certified</strong><span>Industry standard excellence</span></div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">🌿</div>
+                <div><strong>Eco-Friendly</strong><span>Pet &amp; child safe products</span></div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">✅</div>
+                <div><strong>Satisfaction Guaranteed</strong><span>We re-clean if not satisfied</span></div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon">⚡</div>
+                <div><strong>Same-Day Available</strong><span>Book on short notice</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">What We Do</span>
+                <h2 class="section-title">Our Cleaning Services</h2>
+                <p class="section-sub">Professional-grade cleaning for every surface in your home, delivered by
+                    certified technicians.</p>
+            </div>
+
+            <!-- Bento Grid -->
+            <div class="bento-grid">
+                <div class="bento-card bento-large" data-testid="service-carpet">
+                    <div class="bento-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1742483359033-13315b247c74?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=800"
+                            alt="Carpet Cleaning" loading="lazy">
+                    </div>
+                    <div class="bento-overlay">
+                        <span class="bento-tag">Most Popular</span>
+                        <h3>Carpet Cleaning</h3>
+                        <p>Hot water extraction removes deep-seated dirt, allergens &amp; stains. Fast drying, pet-safe
+                            products.</p>
+                        <button class="btn-service" onclick="openServiceModal('carpet-cleaning')">Learn More →</button>
+                    </div>
+                </div>
+
+                <div class="bento-card" data-testid="service-upholstery">
+                    <div class="bento-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1768946131690-247c5319f0d8?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=600"
+                            alt="Upholstery Cleaning" loading="lazy">
+                    </div>
+                    <div class="bento-overlay">
+                        <h3>Upholstery Cleaning</h3>
+                        <p>Revitalize sofas, chairs &amp; all upholstered furniture with fabric-specific methods.</p>
+                        <button class="btn-service" onclick="openServiceModal('upholstery-cleaning')">Learn More
+                            →</button>
+                    </div>
+                </div>
+
+                <div class="bento-card" data-testid="service-rug">
+                    <div class="bento-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1761679296778-7f245d39148d?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=600"
+                            alt="Area Rug Cleaning" loading="lazy">
+                    </div>
+                    <div class="bento-overlay">
+                        <h3>Area Rug Cleaning</h3>
+                        <p>Specialized care for oriental, Persian &amp; modern rugs. Color-safe &amp; gentle techniques.
+                        </p>
+                        <button class="btn-service" onclick="openServiceModal('area-rug-cleaning')">Learn More
+                            →</button>
+                    </div>
+                </div>
+
+                <div class="bento-card bento-wide" data-testid="service-tile">
+                    <div class="bento-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=800"
+                            alt="Tile & Grout Cleaning" loading="lazy">
+                    </div>
+                    <div class="bento-overlay">
+                        <h3>Tile &amp; Grout Cleaning</h3>
+                        <p>High-pressure steam cleaning restores original brilliance. Grout color restoration &amp;
+                            sealing included.</p>
+                        <button class="btn-service" onclick="openServiceModal('tile-grout-cleaning')">Learn More
+                            →</button>
+                    </div>
+                </div>
+
+                <div class="bento-card" data-testid="service-wood">
+                    <div class="bento-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1560184897-502a475f7a0d?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=600"
+                            alt="Wood Floor Cleaning" loading="lazy">
+                    </div>
+                    <div class="bento-overlay">
+                        <h3>Wood Floor Cleaning</h3>
+                        <p>Dust-free hardwood restoration by IICRC-certified technicians. Scratch &amp; scuff removal.
+                        </p>
+                        <button class="btn-service" onclick="openServiceModal('wood-floor-cleaning')">Learn More
+                            →</button>
+                    </div>
+                </div>
+
+                <div class="bento-card" data-testid="service-steam">
+                    <div class="bento-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=600"
+                            alt="Steam Cleaning" loading="lazy">
+                    </div>
+                    <div class="bento-overlay">
+                        <h3>Steam Cleaning</h3>
+                        <p>High-temperature sanitization kills bacteria &amp; dust mites without harsh chemicals.</p>
+                        <button class="btn-service" onclick="openServiceModal('steam-cleaning')">Learn More →</button>
+                    </div>
+                </div>
+
+                <div class="bento-card bento-wide" data-testid="service-repair">
+                    <div class="bento-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1760519663238-6cfdf81416db?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=800"
+                            alt="Carpet Repair" loading="lazy">
+                    </div>
+                    <div class="bento-overlay">
+                        <h3>Carpet Repair</h3>
+                        <p>Burns, tears, wrinkles? We fix &amp; save your carpet—no replacement needed.</p>
+                        <button class="btn-service" onclick="openServiceModal('carpet-repair')">Learn More →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY US ===== -->
+    <section class="why-section" id="why-us">
+        <div class="container">
+            <div class="why-grid">
+                <div class="why-text">
+                    <span class="section-tag section-tag-light">Why Red Rocks</span>
+                    <h2 class="section-title-light">The Professionals Your Home Deserves</h2>
+                    <p class="why-desc">We're not just cleaners — we're certified specialists who treat every home with
+                        the same care as our own. Our team is trained, insured, and equipped with the best technology in
+                        the industry.</p>
+                    <ul class="why-list">
+                        <li><span class="why-check">✓</span> IICRC Certified Technicians</li>
+                        <li><span class="why-check">✓</span> Eco-friendly, pet &amp; child safe products</li>
+                        <li><span class="why-check">✓</span> 100% satisfaction guarantee — we re-clean free</li>
+                        <li><span class="why-check">✓</span> Fully insured &amp; bonded team</li>
+                        <li><span class="why-check">✓</span> Furniture protection &amp; floor guards used</li>
+                        <li><span class="why-check">✓</span> Serving Denver Metro &amp; surrounding areas</li>
+                    </ul>
+                    <button class="btn-primary" onclick="openQuoteModal()" data-testid="why-quote-btn">Schedule a
+                        Clean</button>
+                </div>
+                <div class="why-image">
+                    <div class="why-img-frame">
+                        <img src="https://images.unsplash.com/photo-1762500824959-ad78b31b4161?crop=entropy&cs=srgb&fm=jpg&ixlib=rb-4.1.0&q=85&w=700"
+                            alt="Happy family on clean carpet" loading="lazy">
+                        <div class="why-img-badge">
+                            <div class="badge-stars">★★★★★</div>
+                            <div class="badge-text">5-Star Rated<br><small>on Google</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROCESS ===== -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">How It Works</span>
+                <h2 class="section-title">Simple &amp; Hassle-Free Process</h2>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <h3>Book Your Clean</h3>
+                    <p>Call us or fill out our quick quote form. We'll get back to you within 2 hours with pricing.</p>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <h3>We Arrive On Time</h3>
+                    <p>Our certified technicians arrive with all equipment. We protect your furniture &amp; floors
+                        before starting.</p>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <h3>Deep Clean</h3>
+                    <p>We use professional-grade equipment &amp; eco-friendly products to deliver a thorough, lasting
+                        clean.</p>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <h3>Enjoy the Results</h3>
+                    <p>Your space looks and smells fresh. 100% satisfaction guaranteed — we'll re-clean if needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== REVIEWS ===== -->
+    <section class="reviews-section" id="reviews">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Testimonials</span>
+                <h2 class="section-title">What Denver Homeowners Say</h2>
+                <p class="section-sub">Don't take our word for it — here's what our customers experience.</p>
+            </div>
+            <div class="reviews-grid" id="reviewsGrid">
+                <!-- Rendered by JS -->
+            </div>
+            <div class="reviews-rating-bar">
+                <div class="rating-big">
+                    <span class="rating-score">4.9</span>
+                    <div class="rating-stars">★★★★★</div>
+                    <span class="rating-count">Based on 3K+ reviews</span>
+                </div>
+                <div class="rating-platforms">
+                    <div class="platform-badge">Google Reviews</div>
+                    <div class="platform-badge">Yelp</div>
+                    <div class="platform-badge">HomeAdvisor</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="faq-grid">
+                <div class="faq-left">
+                    <span class="section-tag section-tag-light">FAQ</span>
+                    <h2 class="section-title-light">Got Questions?<br>We've Got Answers.</h2>
+                    <p class="faq-desc">Can't find what you're looking for? Our friendly team is happy to help.</p>
+                    <a href="tel:+13039446070" class="btn-primary" data-testid="faq-call-btn">
+                        📞 Call Us Now
+                    </a>
+                </div>
+                <div class="faq-right" id="faqList">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="section-tag">Get In Touch</span>
+                    <h2 class="section-title">Ready for a Cleaner Home?</h2>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <strong>Phone</strong>
+                                <a href="tel:+13039446070">+1 (303) 944-6070</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <strong>Email</strong>
+                                <a href="mailto:info@redrockscarpetcleaning.com">info@redrockscarpetcleaning.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <strong>Location</strong>
+                                <span>Denver, CO &amp; Surrounding Areas</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🕐</div>
+                            <div>
+                                <strong>Hours</strong>
+                                <span>Mon–Sat: 7 AM – 7 PM<br>Sunday: By Appointment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-wrap">
+                    <h3>Send Us a Message</h3>
+                    <form class="contact-form" id="contactForm" onsubmit="handleContactSubmit(event)"
+                        data-testid="contact-form" name="contact" data-netlify="true">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cName">Your Name *</label>
+                                <input id="cName" name="name" type="text" placeholder="John Smith" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="cEmail">Email *</label>
+                                <input id="cEmail" name="email" type="email" placeholder="john@email.com" required />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cSubject">Subject *</label>
+                            <input id="cSubject" name="subject" type="text" placeholder="What can we help with?"
+                                required />
+                        </div>
+                        <div class="form-group">
+                            <label for="cMessage">Message *</label>
+                            <textarea id="cMessage" name="message" rows="5"
+                                placeholder="Tell us about your cleaning needs..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full" data-testid="contact-submit-btn">Send
+                            Message</button>
+                        <div id="contactSuccess" class="form-success" style="display:none">✅ Message sent! We'll reply
+                            within a few hours.</div>
+                        <div id="contactError" class="form-error" style="display:none">❌ Something went wrong. Please
+                            call us directly.</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="footer-noise"></div>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <img src="https://customer-assets.emergentagent.com/job_b1aaf2b5-fbc2-4620-aa79-e371dea47623/artifacts/5udviie8_redrockscarpetcleaning-logo02.png"
+                    alt="Red Rocks Carpet Cleaning" style="height:50px;" onerror="this.style.display='none'">
+                <p>Denver's most trusted carpet and upholstery cleaning professionals. IICRC certified, eco-friendly,
+                    and satisfaction guaranteed since day one.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Carpet Cleaning</a></li>
+                    <li><a href="#services">Upholstery Cleaning</a></li>
+                    <li><a href="#services">Area Rug Cleaning</a></li>
+                    <li><a href="#services">Tile &amp; Grout</a></li>
+                    <li><a href="#services">Wood Floor Cleaning</a></li>
+                    <li><a href="#services">Steam Cleaning</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#why-us">Why Choose Us</a></li>
+                    <li><a href="#reviews">Customer Reviews</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+13039446070">+1 (303) 944-6070</a></li>
+                    <li><a href="mailto:info@redrockscarpetcleaning.com">info@redrockscarpetcleaning.com</a></li>
+                    <li>Denver, CO</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <span>© 2024 Red Rocks Carpet Cleaning &amp; Upholstery Care. All rights reserved.</span>
+                <span>Serving Denver, CO &amp; Surrounding Areas</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== MOBILE STICKY CALL BUTTON ===== -->
+    <a href="tel:+13039446070" class="mobile-sticky-call" data-testid="mobile-sticky-call">
+        📞 Call Now
+    </a>
+
+    <!-- ===== STICKY GET QUOTE BUTTON ===== -->
+    <button class="sticky-quote-btn" onclick="openQuoteModal()" id="stickyQuoteBtn" data-testid="sticky-quote-btn">
+        Get Quote
+    </button>
+
+    <!-- ===== QUOTE MODAL ===== -->
+    <div class="modal-overlay" id="quoteModal" onclick="handleModalOverlayClick(event)" role="dialog" aria-modal="true"
+        aria-label="Get a Free Quote">
+        <div class="modal-box" id="quoteModalBox">
+            <button class="modal-close" onclick="closeQuoteModal()" aria-label="Close modal"
+                data-testid="modal-close-btn">✕</button>
+            <div class="modal-header">
+                <div class="modal-icon">📋</div>
+                <h2>Get Your Free Quote</h2>
+                <p>We'll get back to you within 2 hours!</p>
+            </div>
+            <form class="modal-form" id="quoteForm" onsubmit="handleQuoteSubmit(event)" data-testid="quote-form"
+                name="quote" data-netlify="true">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="qName">Full Name *</label>
+                        <input id="qName" name="name" type="text" placeholder="Your name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="qPhone">Phone *</label>
+                        <input id="qPhone" name="phone" type="tel" placeholder="(303) 555-0100" required />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="qEmail">Email (Optional)</label>
+                    <input id="qEmail" name="email" type="email" placeholder="your@email.com" />
+                </div>
+                <div class="form-group">
+                    <label for="qService">Service Needed *</label>
+                    <select id="qService" name="service" required>
+                        <option value="">Select a service...</option>
+                        <option value="carpet-cleaning">Carpet Cleaning</option>
+                        <option value="upholstery-cleaning">Upholstery Cleaning</option>
+                        <option value="area-rug-cleaning">Area Rug Cleaning</option>
+                        <option value="tile-grout-cleaning">Tile &amp; Grout Cleaning</option>
+                        <option value="wood-floor-cleaning">Wood Floor Cleaning</option>
+                        <option value="carpet-repair">Carpet Repair</option>
+                        <option value="steam-cleaning">Steam Cleaning</option>
+                        <option value="multiple">Multiple Services</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="qMessage">Additional Details</label>
+                    <textarea id="qMessage" name="message" rows="3"
+                        placeholder="Any specific areas, stains, or concerns?"></textarea>
+                </div>
+                <button type="submit" class="btn-primary w-full btn-lg" data-testid="quote-submit-btn">Request My Free
+                    Quote →</button>
+                <div id="quoteSuccess" class="form-success" style="display:none">✅ Quote requested! We'll call you
+                    within 2 hours.</div>
+                <div id="quoteError" class="form-error" style="display:none">❌ Something went wrong. Please call (303)
+                    944-6070.</div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== SERVICE DETAIL MODAL ===== -->
+    <div class="modal-overlay" id="serviceModal" onclick="handleServiceModalClick(event)" role="dialog"
+        aria-modal="true" aria-label="Service Details">
+        <div class="modal-box modal-service-box" id="serviceModalBox">
+            <button class="modal-close" onclick="closeServiceModal()" aria-label="Close service modal">✕</button>
+            <div id="serviceModalContent"><!-- Filled by JS --></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

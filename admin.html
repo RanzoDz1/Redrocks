@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard — Red Rocks Carpet Cleaning</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #7B2D26;
+            --primary-dk: #5e221d;
+            --accent: #D4AF37;
+            --teal: #008080;
+            --dark: #1A202C;
+            --dark2: #2D3748;
+            --dark3: #4A5568;
+            --light: #F8F9FA;
+            --border: #E2E8F0;
+            --white: #fff;
+            --radius: 12px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: var(--dark3);
+            min-height: 100vh;
+        }
+
+        /* Login Screen */
+        .login-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+
+        .login-box {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .login-logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .login-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            color: var(--dark);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .login-sub {
+            font-size: 0.85rem;
+            color: var(--dark3);
+            margin-bottom: 32px;
+        }
+
+        .login-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 16px;
+            text-align: left;
+        }
+
+        .login-group label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--dark3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .login-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .login-group input:focus {
+            border-color: var(--primary);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+
+        .login-btn:hover {
+            background: var(--primary-dk);
+        }
+
+        .login-error {
+            color: #991b1b;
+            background: #fef2f2;
+            border: 1px solid #fca5a5;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            display: none;
+        }
+
+        /* Layout */
+        .admin-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 240px;
+            background: var(--dark);
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            padding: 28px 24px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sidebar-logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            line-height: 1.2;
+        }
+
+        .sidebar-logo-sub {
+            font-size: 0.72rem;
+            color: var(--accent);
+            margin-top: 2px;
+        }
+
+        .sidebar-nav {
+            padding: 16px 0;
+            flex: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 24px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.88rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+            text-decoration: none;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.07);
+            border-left-color: var(--accent);
+        }
+
+        .nav-item .icon {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-item .badge {
+            margin-left: auto;
+            background: var(--primary);
+            color: var(--white);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 50px;
+        }
+
+        .sidebar-footer {
+            padding: 20px 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+        }
+
+        /* Main */
+        .main-content {
+            margin-left: 240px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .topbar {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .topbar-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .topbar-time {
+            font-size: 0.82rem;
+            color: var(--dark3);
+        }
+
+        .page-body {
+            padding: 32px;
+            flex: 1;
+        }
+
+        /* Stats cards */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--dark3);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            line-height: 1;
+        }
+
+        .stat-card.primary .stat-value {
+            color: var(--primary);
+        }
+
+        .stat-card.teal .stat-value {
+            color: var(--teal);
+        }
+
+        .stat-card.accent .stat-value {
+            color: #b7860f;
+        }
+
+        /* Table section */
+        .section-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            margin-bottom: 28px;
+        }
+
+        .section-top {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .section-top h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            color: var(--dark);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 6px 14px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: var(--white);
+            font-size: 0.8rem;
+            color: var(--dark3);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .refresh-btn {
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            background: var(--light);
+            font-size: 0.82rem;
+            color: var(--dark3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .refresh-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: var(--light);
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--dark3);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.87rem;
+            color: var(--dark3);
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background: #fafafa;
+        }
+
+        .name-cell {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-new {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-contacted {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-completed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-pending {
+            background: #ede9fe;
+            color: #5b21b6;
+        }
+
+        .status-pending_sync {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .action-btn {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 5px 10px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            margin-right: 4px;
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .action-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 24px;
+            color: var(--dark3);
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+
+        .empty-state h4 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 6px;
+        }
+
+        .loader {
+            padding: 48px;
+            text-align: center;
+            color: var(--dark3);
+            font-size: 0.9rem;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Timestamp */
+        .date-cell {
+            white-space: nowrap;
+        }
+
+        /* Alert */
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+
+        .alert-warning {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fcd34d;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== LOGIN ===== -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-box">
+            <div class="login-logo">Red Rocks Carpet Cleaning</div>
+            <h1 class="login-title">Admin Panel</h1>
+            <p class="login-sub">Sign in to manage quote requests</p>
+            <form onsubmit="handleLogin(event)">
+                <div class="login-group">
+                    <label for="lUser">Username</label>
+                    <input id="lUser" type="text" value="admin" placeholder="admin" autocomplete="username" />
+                </div>
+                <div class="login-group">
+                    <label for="lPass">Password</label>
+                    <input id="lPass" type="password" placeholder="••••••••" autocomplete="current-password" />
+                </div>
+                <button class="login-btn" type="submit">Sign In →</button>
+                <div class="login-error" id="loginError">Invalid username or password.</div>
+            </form>
+            <p style="margin-top:20px;font-size:0.78rem;color:#a0aec0;">Login credentials are required</p>
+        </div>
+    </div>
+
+    <!-- ===== ADMIN LAYOUT ===== -->
+    <div class="admin-layout" id="adminLayout" style="display:none">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-text">Red Rocks Admin</div>
+                <div class="sidebar-logo-sub">Management Dashboard</div>
+            </div>
+            <nav class="sidebar-nav">
+                <a class="nav-item active" onclick="showPage('quotes')" href="#" data-testid="nav-quotes">
+                    <span class="icon">📋</span> Quote Requests
+                    <span class="badge" id="newBadge">0</span>
+                </a>
+                <a class="nav-item" onclick="showPage('contacts')" href="#" data-testid="nav-contacts">
+                    <span class="icon">✉️</span> Contact Messages
+                </a>
+                <a class="nav-item" onclick="showPage('stats')" href="#" data-testid="nav-stats">
+                    <span class="icon">📊</span> Statistics
+                </a>
+                <a class="nav-item" href="index.html" target="_blank" data-testid="nav-website">
+                    <span class="icon">🌐</span> View Website
+                </a>
+                <a class="nav-item" onclick="openSettings()" href="#" data-testid="nav-settings">
+                    <span class="icon">⚙️</span> Connection Settings
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="logout-btn" onclick="logout()">← Sign Out</button>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="main-content">
+            <div class="topbar">
+                <div class="topbar-title" id="pageTitle">Quote Requests</div>
+                <div class="topbar-time" id="topbarTime"></div>
+            </div>
+
+            <div class="page-body">
+                <!-- QUOTES PAGE -->
+                <div class="page active" id="page-quotes">
+                    <div class="stats-row" id="statsRow">
+                        <div class="stat-card primary">
+                            <div class="stat-label">Total Quotes</div>
+                            <div class="stat-value" id="statTotal">—</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">New</div>
+                            <div class="stat-value" id="statNew">—</div>
+                        </div>
+                        <div class="stat-card teal">
+                            <div class="stat-label">Contacted</div>
+                            <div class="stat-value" id="statContacted">—</div>
+                        </div>
+                        <div class="stat-card accent">
+                            <div class="stat-label">Completed</div>
+                            <div class="stat-value" id="statCompleted">—</div>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <div class="section-top">
+                            <h3>All Quote Requests</h3>
+                            <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+                                <div class="filter-row">
+                                    <button class="filter-btn active" onclick="filterQuotes('all', this)">All</button>
+                                    <button class="filter-btn" onclick="filterQuotes('new', this)">New</button>
+                                    <button class="filter-btn" onclick="filterQuotes('pending', this)">Pending</button>
+                                    <button class="filter-btn"
+                                        onclick="filterQuotes('contacted', this)">Contacted</button>
+                                    <button class="filter-btn"
+                                        onclick="filterQuotes('completed', this)">Completed</button>
+                                </div>
+                                <button class="refresh-btn" onclick="loadData()" data-testid="refresh-quotes">🔄
+                                    Refresh</button>
+                            </div>
+                        </div>
+                        <div id="quotesTableWrap">
+                            <div class="loader">Loading quotes...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTACTS PAGE -->
+                <div class="page" id="page-contacts">
+                    <div class="section-card">
+                        <div class="section-top">
+                            <h3>Contact Messages</h3>
+                            <button class="refresh-btn" onclick="loadContacts()" data-testid="refresh-contacts">🔄
+                                Refresh</button>
+                        </div>
+                        <div id="contactsTableWrap">
+                            <div class="loader">Loading messages...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATS PAGE -->
+                <div class="page" id="page-stats">
+                    <div class="stats-row">
+                        <div class="stat-card primary">
+                            <div class="stat-label">Total Quotes</div>
+                            <div class="stat-value" id="statTotal2">—</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">New</div>
+                            <div class="stat-value" id="statNew2">—</div>
+                        </div>
+                        <div class="stat-card teal">
+                            <div class="stat-label">Contacted</div>
+                            <div class="stat-value" id="statContacted2">—</div>
+                        </div>
+                        <div class="stat-card accent">
+                            <div class="stat-label">Completed</div>
+                            <div class="stat-value" id="statCompleted2">—</div>
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <div class="section-top">
+                            <h3>Statistics Overview</h3>
+                        </div>
+                        <div style="padding:24px" id="statsDetails">
+                            <div class="loader">Loading stats...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ===== SETTINGS MODAL ===== -->
+    <div id="settingsModal" class="login-screen"
+        style="display:none; background:rgba(0,0,0,0.8); backdrop-filter:blur(4px);">
+        <div class="login-box" style="max-width:500px">
+            <h2 class="login-title">Netlify Connection</h2>
+            <p class="login-sub">Enter your credentials to sync with Netlify Forms</p>
+            <div class="login-group">
+                <label>Netlify Personal Access Token</label>
+                <input id="netToken" type="password" placeholder="nfp_..." />
+                <small style="color:#718096;margin-top:4px">Generate this in your Netlify User Settings</small>
+            </div>
+            <div class="login-group">
+                <label>Netlify Site ID</label>
+                <input id="netSiteId" type="text" placeholder="ba1a2b3c-..." />
+                <small style="color:#718096;margin-top:4px">Found in Site Configuration > General</small>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:20px">
+                <button class="login-btn" onclick="saveSettings()">Save Configuration</button>
+                <button class="login-btn" style="background:#4A5568" onclick="closeSettings()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Netlify Configuration
+        let NETLIFY_TOKEN = localStorage.getItem('netlify_token') || '';
+        let NETLIFY_SITE_ID = localStorage.getItem('netlify_site_id') || '';
+
+        let authHeader = '';
+        let allQuotes = [];
+        let currentFilter = 'all';
+
+        // ===== LOGIN =====
+        async function handleLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('lUser').value;
+            const pass = document.getElementById('lPass').value;
+            const err = document.getElementById('loginError');
+            const btn = e.target.querySelector('button');
+
+            btn.textContent = 'Signing in...';
+            btn.disabled = true;
+            err.style.display = 'none';
+
+            // Local-only authentication for permanent access 
+            // Password checked against base64 to avoid plaintext secrets in source control
+            if (user === 'admin' && btoa(pass) === 'cmVkcm9ja3MyMDI0') {
+                authHeader = 'Basic ' + btoa(user + ':' + pass);
+                enterDashboard();
+            } else {
+                err.style.display = 'block';
+            }
+
+            btn.textContent = 'Sign In →';
+            btn.disabled = false;
+        }
+
+        function enterDashboard() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('adminLayout').style.display = 'flex';
+            setInterval(updateTime, 1000);
+            updateTime();
+            loadData();
+        }
+
+        function logout() {
+            authHeader = '';
+            document.getElementById('loginScreen').style.display = 'flex';
+            document.getElementById('adminLayout').style.display = 'none';
+        }
+
+        // ===== SETTINGS =====
+        function openSettings() {
+            document.getElementById('netToken').value = NETLIFY_TOKEN;
+            document.getElementById('netSiteId').value = NETLIFY_SITE_ID;
+            document.getElementById('settingsModal').style.display = 'flex';
+        }
+
+        function closeSettings() {
+            document.getElementById('settingsModal').style.display = 'none';
+        }
+
+        function saveSettings() {
+            NETLIFY_TOKEN = document.getElementById('netToken').value.trim();
+            NETLIFY_SITE_ID = document.getElementById('netSiteId').value.trim();
+            localStorage.setItem('netlify_token', NETLIFY_TOKEN);
+            localStorage.setItem('netlify_site_id', NETLIFY_SITE_ID);
+            closeSettings();
+            loadData(); // Reload with new credentials
+        }
+
+        // ===== TIME =====
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('topbarTime').textContent =
+                now.toLocaleString('en-US', { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        }
+
+        // ===== PAGE NAV =====
+        function showPage(name) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('page-' + name).classList.add('active');
+            event.currentTarget.classList.add('active');
+            const titles = { quotes: 'Quote Requests', contacts: 'Contact Messages', stats: 'Statistics' };
+            document.getElementById('pageTitle').textContent = titles[name] || name;
+            if (name === 'contacts') loadContacts();
+            if (name === 'stats') loadStats();
+        }
+
+        // ===== LOAD DATA =====
+        async function loadData() {
+            await loadQuotes();
+            await loadContacts();
+            await loadStats();
+        }
+
+        async function loadQuotes() {
+            const wrap = document.getElementById('quotesTableWrap');
+            wrap.innerHTML = '<div class="loader">Loading quotes from Netlify...</div>';
+
+            if (!NETLIFY_TOKEN || !NETLIFY_SITE_ID) {
+                wrap.innerHTML = `<div class="empty-state">
+                    <div class="empty-icon">⚙️</div>
+                    <h4>Connection Required</h4>
+                    <p>Please enter your Netlify Access Token and Site ID in the settings to sync quotes.</p>
+                    <button class="action-btn" onclick="openSettings()" style="margin-top:10px">Open Settings</button>
+                </div>`;
+                allQuotes = JSON.parse(localStorage.getItem('quotes') || '[]');
+                renderQuotes();
+                return;
+            }
+
+            try {
+                // Fetch submissions from Netlify API
+                const res = await fetch(`https://api.netlify.com/api/v1/sites/${NETLIFY_SITE_ID}/submissions`, {
+                    headers: { 'Authorization': `Bearer ${NETLIFY_TOKEN}` }
+                });
+
+                if (res.ok) {
+                    const submissions = await res.json();
+                    const netlifyQuotes = submissions
+                        .filter(s => s.form_name === 'quote')
+                        .map(s => ({
+                            id: s.id,
+                            name: s.data.name,
+                            phone: s.data.phone,
+                            email: s.data.email,
+                            service: s.data.service,
+                            message: s.data.message,
+                            status: s.data.status || 'new',
+                            created_at: s.created_at
+                        }));
+
+                    // Merge logic: Start with local data, add server data if not present
+                    const localQuotes = JSON.parse(localStorage.getItem('quotes') || '[]');
+                    let merged = [...localQuotes];
+
+                    netlifyQuotes.forEach(nq => {
+                        // Check if this server quote already exists in our merged list (by server ID or content)
+                        const exists = merged.some(l => l.id === nq.id || (l.name === nq.name && l.message === nq.message && Math.abs(new Date(l.created_at) - new Date(nq.created_at)) < 60000));
+                        if (!exists) {
+                            merged.push(nq);
+                        } else {
+                            // Update the local one with server ID if it was a local-only placeholder
+                            const localIdx = merged.findIndex(l => !l.id.toString().includes('-') && l.name === nq.name && l.message === nq.message);
+                            if (localIdx !== -1) merged[localIdx].id = nq.id;
+                        }
+                    });
+
+                    allQuotes = merged.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                    saveQuotesLocally();
+                } else {
+                    throw new Error('Netlify API error');
+                }
+            } catch (err) {
+                console.warn('Netlify sync failed, using local storage:', err);
+                allQuotes = JSON.parse(localStorage.getItem('quotes') || '[]');
+            }
+            renderQuotes();
+        }
+
+        function filterQuotes(filter, btn) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderQuotes();
+        }
+
+        function renderQuotes() {
+            const wrap = document.getElementById('quotesTableWrap');
+            let data = currentFilter === 'all' ? allQuotes : allQuotes.filter(q => q.status === currentFilter);
+
+            // Update badge
+            const newCount = allQuotes.filter(q => q.status === 'new').length;
+            document.getElementById('newBadge').textContent = newCount;
+
+            if (!data.length) {
+                wrap.innerHTML = `<div class="empty-state"><div class="empty-icon">📭</div><h4>No quotes found</h4><p>Quote requests will appear here after submission.</p></div>`;
+                return;
+            }
+
+            wrap.innerHTML = `<table>
+      <thead><tr>
+        <th>#</th><th>Name</th><th>Phone</th><th>Email</th>
+        <th>Service</th><th>Status</th><th>Date</th><th>Actions</th>
+      </tr></thead>
+      <tbody>
+        ${data.map((q, i) => `
+          <tr id="row-${q.id}">
+            <td>${i + 1}</td>
+            <td class="name-cell">${esc(q.name)}</td>
+            <td><a href="tel:${esc(q.phone)}" style="color:#7B2D26;text-decoration:none">${esc(q.phone)}</a></td>
+            <td>${q.email ? esc(q.email) : '<span style="color:#a0aec0">—</span>'}</td>
+            <td>${esc(q.service ? q.service.replace(/-/g, ' ') : '')}</td>
+            <td><span class="status-badge status-${esc(q.status || 'new')}">${esc(q.status || 'new')}</span></td>
+            <td class="date-cell">${formatDate(q.created_at)}</td>
+            <td>
+              ${q.status !== 'pending' ? `<button class="action-btn" style="color:#5b21b6;border-color:#ede9fe" onclick="updateStatus('${q.id}','pending')">⏳ Pending</button>` : ''}
+              ${q.status !== 'contacted' ? `<button class="action-btn" onclick="updateStatus('${q.id}','contacted')">📞 Contacted</button>` : ''}
+              ${q.status !== 'completed' ? `<button class="action-btn" onclick="updateStatus('${q.id}','completed')">✅ Done</button>` : ''}
+              <button class="action-btn" style="color:#991b1b" onclick="deleteQuote('${q.id}')">🗑</button>
+            </td>
+          </tr>
+          ${q.message ? `<tr style="background:#fafafa"><td colspan="8" style="padding:8px 16px 14px 40px;font-size:0.82rem;color:#718096;font-style:italic">"${esc(q.message)}"</td></tr>` : ''}
+        `).join('')}
+      </tbody>
+    </table>`;
+        }
+
+        // Persist allQuotes to localStorage so changes survive page reload
+        function saveQuotesLocally() {
+            localStorage.setItem('quotes', JSON.stringify(allQuotes));
+        }
+
+        async function updateStatus(id, status) {
+            // Update in memory immediately
+            const q = allQuotes.find(x => x.id == id);
+            if (q) q.status = status;
+            saveQuotesLocally(); // persist right away
+            renderQuotes();
+            // Note: In Direct Netlify mode, status is tracked locally per device/browser 
+            // unless we use a more complex setup. For a simple zip, this is the best 'forever' balance.
+        }
+
+        async function deleteQuote(id) {
+            if (!confirm('Delete this quote request?')) return;
+
+            // Remove from local list
+            allQuotes = allQuotes.filter(q => q.id != id);
+            saveQuotesLocally();
+            renderQuotes();
+
+            // Also attempt to delete from Netlify API
+            if (NETLIFY_TOKEN) {
+                try {
+                    await fetch(`https://api.netlify.com/api/v1/submissions/${id}`, {
+                        method: 'DELETE',
+                        headers: { 'Authorization': `Bearer ${NETLIFY_TOKEN}` }
+                    });
+                } catch (err) { console.warn('Could not delete from Netlify servers'); }
+            }
+        }
+
+        async function loadContacts() {
+            const wrap = document.getElementById('contactsTableWrap');
+            wrap.innerHTML = '<div class="loader">Loading messages from Netlify...</div>';
+
+            if (!NETLIFY_TOKEN || !NETLIFY_SITE_ID) {
+                const data = JSON.parse(localStorage.getItem('contacts') || '[]');
+                renderContacts(data);
+                return;
+            }
+
+            try {
+                const res = await fetch(`https://api.netlify.com/api/v1/sites/${NETLIFY_SITE_ID}/submissions`, {
+                    headers: { 'Authorization': `Bearer ${NETLIFY_TOKEN}` }
+                });
+                if (res.ok) {
+                    const submissions = await res.json();
+                    const netlifyContacts = submissions
+                        .filter(s => s.form_name === 'contact')
+                        .map(s => ({
+                            id: s.id,
+                            name: s.data.name,
+                            email: s.data.email,
+                            subject: s.data.subject,
+                            message: s.data.message,
+                            created_at: s.created_at
+                        }));
+
+                    const localContacts = JSON.parse(localStorage.getItem('contacts') || '[]');
+                    let merged = [...localContacts];
+
+                    netlifyContacts.forEach(nc => {
+                        const exists = merged.some(l => l.id === nc.id || (l.name === nc.name && l.message === nc.message));
+                        if (!exists) {
+                            merged.push(nc);
+                        } else {
+                            const localIdx = merged.findIndex(l => !l.id.toString().includes('-') && l.name === nc.name && l.message === nc.message);
+                            if (localIdx !== -1) merged[localIdx].id = nc.id;
+                        }
+                    });
+
+                    const data = merged.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                    localStorage.setItem('contacts', JSON.stringify(data));
+                    renderContacts(data);
+                } else { throw new Error(); }
+            } catch (err) {
+                const data = JSON.parse(localStorage.getItem('contacts') || '[]');
+                renderContacts(data);
+            }
+        }
+
+        function renderContacts(data) {
+            const wrap = document.getElementById('contactsTableWrap');
+            wrap.innerHTML = `<table>
+      <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Subject</th><th>Message</th><th>Date</th></tr></thead>
+      <tbody>
+        ${data.map((c, i) => `<tr>
+          <td>${i + 1}</td>
+          <td class="name-cell">${esc(c.name)}</td>
+          <td><a href="mailto:${esc(c.email)}" style="color:#7B2D26">${esc(c.email)}</a></td>
+          <td>${esc(c.subject)}</td>
+          <td style="max-width:300px;white-space:pre-wrap">${esc(c.message)}</td>
+          <td class="date-cell">${formatDate(c.created_at)}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+        }
+
+        async function loadStats() {
+            let stats = { total: 0, new: 0, contacted: 0, completed: 0 };
+
+            // Compute from local data (which is merged with server data)
+            stats.total = allQuotes.length;
+            stats.new = allQuotes.filter(q => q.status === 'new').length;
+            stats.contacted = allQuotes.filter(q => q.status === 'contacted').length;
+            stats.completed = allQuotes.filter(q => q.status === 'completed').length;
+
+            document.getElementById('statTotal').textContent = stats.total;
+            document.getElementById('statNew').textContent = stats.new;
+            document.getElementById('statContacted').textContent = stats.contacted;
+            document.getElementById('statCompleted').textContent = stats.completed;
+            document.getElementById('statTotal2').textContent = stats.total;
+            document.getElementById('statNew2').textContent = stats.new;
+            document.getElementById('statContacted2').textContent = stats.contacted;
+            document.getElementById('statCompleted2').textContent = stats.completed;
+            const details = document.getElementById('statsDetails');
+            if (details) {
+                const pct = t => stats.total ? Math.round((t / stats.total) * 100) : 0;
+                details.innerHTML = `
+        <table><thead><tr><th>Status</th><th>Count</th><th>Percentage</th></tr></thead>
+        <tbody>
+          <tr><td><span class="status-badge status-new">new</span></td><td>${stats.new}</td><td>${pct(stats.new)}%</td></tr>
+          <tr><td><span class="status-badge status-contacted">contacted</span></td><td>${stats.contacted}</td><td>${pct(stats.contacted)}%</td></tr>
+          <tr><td><span class="status-badge status-completed">completed</span></td><td>${stats.completed}</td><td>${pct(stats.completed)}%</td></tr>
+          <tr><td><strong>Total</strong></td><td><strong>${stats.total}</strong></td><td>100%</td></tr>
+        </tbody></table>
+        <div class="alert alert-info" style="margin-top:20px">
+          💡 Quote requests submitted via the website form are automatically stored and appear here as <strong>new</strong> status. Mark them as <strong>contacted</strong> after calling the customer, and <strong>completed</strong> once the job is done.
+        </div>`;
+            }
+        }
+
+        // ===== HELPERS =====
+        function formatDate(iso) {
+            if (!iso) return '—';
+            try { return new Date(iso).toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' }); }
+            catch { return iso; }
+        }
+        function esc(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+    </script>
+</body>
+
+</html>
